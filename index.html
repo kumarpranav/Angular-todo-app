@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head>
+	<title> Todo App</title>
+	<link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div ng-controller="todoTaskController" class="container">
+<h2>{{model.appName}}</h2>
+<input class="form-control" placeholder="add a todo" type="text" ng-model="todotask">
+<button class="btn btn-primary" ng-disabled="!todotask" ng-click="addToDoTask(todotask)">Add Task</button>
+<div class="alert alert-danger" ng-show="model.toDoTaskExist">
+	<p>This task already exist! 
+		<button ng-click="model.toDoTaskExist = false">Close</button>
+	</p> 
+</div>	
+<div ng-show="model.todoList.length > 0">
+<h3> Your List of Todo </h3>
+</div>
+<div ng-repeat="todo in model.todoList">
+	{{todo}} <button><span tooltip="Remove Task" ng-click="deleteTodoTask(todo)">x</span></button>
+</div>
+<hr>
+<button ng-show="model.todoList.length > 0" class="btn btn-primary" ng-click="resetAll()">Reset</button>
+</div>
+<script src=./lib/angular/angular.min.js"></script>
+<script src="./app/app.js"></script>
+<script src="./app/controller.js"></script>
+</body>
+</html>
